@@ -39,6 +39,7 @@ The following Python packages are required:
 * PyTorch (version 1.10.1)
 * MinkowskiEngine (version 0.5.4)
 * pytorch_metric_learning (version 1.1 or above)
+* pandas
 * wandb
 
 Modify the `PYTHONPATH` environment variable to include absolute path to the project root folder: 

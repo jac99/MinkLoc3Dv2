@@ -1,4 +1,3 @@
-from models.layers.glam import GLAM
 from models.layers.pooling import MAC, SPoC, GeM, NetVLADWrapper
 import torch.nn as nn
 import MinkowskiEngine as ME

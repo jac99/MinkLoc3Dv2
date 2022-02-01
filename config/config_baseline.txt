@@ -1,5 +1,5 @@
 [DEFAULT]
-dataset=pnv
+dataset = pnv
 dataset_folder = /data3/pointnetvlad/benchmark_datasets
 
 [TRAIN]

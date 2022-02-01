@@ -21,7 +21,7 @@ Recent state-of-the-art methods have relatively complex architectures such as mu
 Our method uses a simple and efficient 3D convolutional feature extraction, based on a sparse voxelized representation, enhanced with channel attention blocks. 
 We employ recent advances in image retrieval and propose a modified version of a loss function based on a differentiable average precision approximation. Such loss function requires training with very large batches for the best results. This is enabled by using multistaged backpropagation.
 Experimental evaluation on the popular benchmarks proves the effectiveness of our approach, with a consistent improvement over state of the art.
-![Overview](media/overview.jpg)
+![Overview](media/overview.png)
 
 ### Citation
 If you find this work useful, please consider citing:
@@ -40,7 +40,7 @@ The following Python packages are required:
 
 Modify the `PYTHONPATH` environment variable to include absolute path to the project root folder: 
 ```export PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:/home/.../MinkLoc3D
+export PYTHONPATH=$PYTHONPATH:/home/.../MinkLoc3Dv2
 ```
 
 ### Datasets
@@ -100,7 +100,7 @@ python evaluate.py --config ../config/config_refined.txt --model_config ../model
 
 ## Results
 
-**MinkLoc3D** performance (measured by Average Recall@1) compared to state-of-the-art:
+**MinkLoc3Dv2** performance (measured by Average Recall@1) compared to state-of-the-art:
 
 ### Trained on Baseline Dataset
 

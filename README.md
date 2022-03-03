@@ -29,14 +29,14 @@ Experimental evaluation on the popular benchmarks proves the effectiveness of ou
 ### Citation
 If you find this work useful, please consider citing:
 
-   @misc{komorowski2022improving,
-         title={Improving Point Cloud Based Place Recognition with Ranking-based Loss and Large Batch Training}, 
-         author={Jacek Komorowski},
-         year={2022},
-         eprint={2203.00972},
-         archivePrefix={arXiv},
-         primaryClass={cs.CV}
-   }
+    @misc{komorowski2022improving,
+          title={Improving Point Cloud Based Place Recognition with Ranking-based Loss and Large Batch Training}, 
+          author={Jacek Komorowski},
+          year={2022},
+          eprint={2203.00972},
+          archivePrefix={arXiv},
+          primaryClass={cs.CV}
+    }
 
 ### Environment and Dependencies
 Code was tested using Python 3.8 with PyTorch 1.10.1 and MinkowskiEngine 0.5.4 on Ubuntu 20.04 with CUDA 10.2.
@@ -111,7 +111,7 @@ python evaluate.py --config ../config/config_refined.txt --model_config ../model
 
 ## Results
 
-**MinkLoc3Dv2** performance (measured by Average Recall@1) compared to state-of-the-art:
+**MinkLoc3Dv2** performance (measured by Average Recall@1) compared to the state of the art:
 
 ### Trained on Baseline Dataset
 

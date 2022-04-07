@@ -10,6 +10,7 @@ Warsaw University of Technology
 
 ### What's new ###
 * [2022-02-01] Evaluation code and trained model of MinkLoc3Dv2 is released. 
+* [2022-04-07] Training code released. 
 
 ### Our other projects ###
 * MinkLoc3D: Point Cloud Based Large-Scale Place Recognition (WACV 2021): [MinkLoc3D](https://github.com/jac99/MinkLoc3D)
@@ -87,7 +88,23 @@ Before running the code, ensure you have read/write rights to `<dataset_root_pat
 are saved there. 
 
 ### Training
-Training code will be released after the paper acceptance.
+
+To train **MinkLoc3Dv2** model, download and decompress the dataset and generate training pickles as described above.
+Edit the configuration file (`config_baseline.txt` or `config_refined.txt`). 
+Set `dataset_folder` parameter to the dataset root folder.
+If running out of GPU memory, decrease `batch_split_size` parameter value. 
+
+To train the network, run:
+
+```train baseline
+cd training
+
+# To train minkloc3d model on the Baseline Dataset
+python train.py --config ../config/config_baseline.txt --model_config ../models/minkloc3dv2.txt
+
+# To train minkloc3d model on the Refined Dataset
+python train.py --config ../config/config_refined.txt --model_config ../models/minkloc3dv2.txt
+```
 
 ### Pre-trained Models
 

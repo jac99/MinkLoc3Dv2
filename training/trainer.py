@@ -34,8 +34,6 @@ def print_global_stats(phase, stats):
 
 def print_stats(phase, stats):
     print_global_stats(phase, stats['global'])
-    if 'secondary' in stats:
-        print_global_stats(phase, stats['secondary'])
 
 
 def tensors_to_numbers(stats):
@@ -230,10 +228,8 @@ def do_train(params: TrainingParams):
 
             if phase == 'train':
                 global_iter = iter(dataloaders['train'])
-                secondary_iter = iter(dataloaders['secondary_train']) if 'secondary_train' in dataloaders else None
             else:
                 global_iter = None if dataloaders['val'] is None else iter(dataloaders['val'])
-                secondary_iter = None
 
             while True:
                 count_batches += 1
@@ -244,10 +240,6 @@ def do_train(params: TrainingParams):
                 try:
                     temp_stats = train_step_fn(global_iter, model, phase, device, optimizer, loss_fn)
                     batch_stats['global'] = temp_stats
-
-                    if secondary_iter is not None:
-                        temp_stats = train_step_fn(secondary_iter, model, phase, device, optimizer, loss_fn)
-                        batch_stats['secondary'] = temp_stats
 
                 except StopIteration:
                     # Terminate the epoch when one of dataloders is exhausted
@@ -283,19 +275,9 @@ def do_train(params: TrainingParams):
             if 'recall' in epoch_stats['global']:
                 metrics[phase]['recall@1'] = epoch_stats['global']['recall'][1]
 
-            if 'soft_recall' in epoch_stats['global']:
-                metrics[phase]['soft_recall@1'] = epoch_stats['global']['soft_recall'][1]
-
             if 'ap' in epoch_stats['global']:
                 metrics[phase]['AP'] = epoch_stats['global']['ap']
 
-            if 'mean_rn' in epoch_stats['global']:
-                metrics[phase]['mean_neg_rank'] = epoch_stats['global']['mean_rn']
-
-            if 'secondary' in epoch_stats:
-                metrics[phase]['loss2'] = epoch_stats['secondary']['loss']
-                if 'num_non_zero_triplets' in epoch_stats['global']:
-                    metrics[phase]['active_triplets2'] = epoch_stats['secondary']['num_non_zero_triplets']
 
         # ******* FINALIZE THE EPOCH *******
 
@@ -314,12 +296,6 @@ def do_train(params: TrainingParams):
             rnz = le_train_stats['global']['num_non_zero_triplets'] / le_train_stats['global']['num_triplets']
             if rnz < params.batch_expansion_th:
                 dataloaders['train'].batch_sampler.expand_batch()
-
-            # Expand secondary dataloader
-            if 'secondary' in le_train_stats:
-                rnz = le_train_stats['secondary']['num_non_zero_triplets'] / le_train_stats['secondary']['num_triplets']
-                if rnz < params.batch_expansion_th:
-                    dataloaders['secondary_train'].batch_sampler.expand_batch()
 
     print('')
 
@@ -341,22 +317,7 @@ def do_train(params: TrainingParams):
     model_name = os.path.splitext(os.path.split(final_model_path)[1])[0]
     prefix = "{}, {}, {}".format(model_params_name, config_name, model_name)
 
-    if params.dataset == 'pnv':
-        pnv_write_eval_stats("pnv_experiment_results.txt", prefix, stats)
-    else:
-        write_eval_stats("experiment_results.txt", prefix, stats)
-
-
-def write_eval_stats(file_name, prefix, stats):
-    # Print results of the final model
-    with open(file_name, "a") as f:
-        recall_5 = stats['recall'][5][0]
-        recall_20 = stats['recall'][20][0]
-        s = f"{prefix}, {recall_5:0.3f}, {recall_20:0.3f}\n"
-        f.write(s)
-
-    metrics = {'recall_5': recall_5, 'recall_20': recall_20}
-    wandb.log(metrics)
+    pnv_write_eval_stats("pnv_experiment_results.txt", prefix, stats)
 
 
 def create_weights_folder():

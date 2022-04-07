@@ -3,7 +3,7 @@
 
 Paper: [Improving Point Cloud Based Place Recognition with Ranking-based Loss and Large Batch Training](https://arxiv.org/pdf/2203.00972v1.pdf) 
 
-Submitted to: 2022 International Conference on Pattern Recognition (ICPR)
+26th International Conference on Pattern Recognition (ICPR 2022)
 
 [Jacek Komorowski](mailto:jacek.komorowski@pw.edu.pl)
 Warsaw University of Technology

@@ -2,7 +2,30 @@
 import os
 import pickle
 from typing import List
+from typing import Dict
+import torch
 import numpy as np
+from torch.utils.data import Dataset
+
+
+class TrainingTuple:
+    # Tuple describing an element for training/validation
+    def __init__(self, id: int, timestamp: int, rel_scan_filepath: str, positives: np.ndarray,
+                 non_negatives: np.ndarray, position: np.ndarray):
+        # id: element id (ids start from 0 and are consecutive numbers)
+        # ts: timestamp
+        # rel_scan_filepath: relative path to the scan
+        # positives: sorted ndarray of positive elements id
+        # negatives: sorted ndarray of elements id
+        # position: x, y position in meters (northing, easting)
+        assert position.shape == (2,)
+
+        self.id = id
+        self.timestamp = timestamp
+        self.rel_scan_filepath = rel_scan_filepath
+        self.positives = positives
+        self.non_negatives = non_negatives
+        self.position = position
 
 
 class EvaluationTuple:
@@ -16,6 +39,40 @@ class EvaluationTuple:
 
     def to_tuple(self):
         return self.timestamp, self.rel_scan_filepath, self.position
+
+
+class TrainingDataset(Dataset):
+    def __init__(self, dataset_path, query_filename, transform=None, set_transform=None):
+        # remove_zero_points: remove points with all zero coords
+        assert os.path.exists(dataset_path), 'Cannot access dataset path: {}'.format(dataset_path)
+        self.dataset_path = dataset_path
+        self.query_filepath = os.path.join(dataset_path, query_filename)
+        assert os.path.exists(self.query_filepath), 'Cannot access query file: {}'.format(self.query_filepath)
+        self.transform = transform
+        self.set_transform = set_transform
+        self.queries: Dict[int, TrainingTuple] = pickle.load(open(self.query_filepath, 'rb'))
+        print('{} queries in the dataset'.format(len(self)))
+
+        # pc_loader must be set in the inheriting class
+        self.pc_loader: PointCloudLoader = None
+
+    def __len__(self):
+        return len(self.queries)
+
+    def __getitem__(self, ndx):
+        # Load point cloud and apply transform
+        file_pathname = os.path.join(self.dataset_path, self.queries[ndx].rel_scan_filepath)
+        query_pc = self.pc_loader(file_pathname)
+        query_pc = torch.tensor(query_pc, dtype=torch.float)
+        if self.transform is not None:
+            query_pc = self.transform(query_pc)
+        return query_pc, ndx
+
+    def get_positives(self, ndx):
+        return self.queries[ndx].positives
+
+    def get_non_negatives(self, ndx):
+        return self.queries[ndx].non_negatives
 
 
 class EvaluationSet:

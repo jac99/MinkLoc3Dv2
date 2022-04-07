@@ -99,7 +99,6 @@ class TrainingParams:
 
         config.read(self.params_path)
         params = config['DEFAULT']
-        self.dataset = params.get('dataset').lower()
         self.dataset_folder = params.get('dataset_folder')
 
         params = config['TRAIN']

@@ -1,9 +1,9 @@
 # Improving Point Cloud Based Place Recognition with Ranking-based Loss and Large Batch Training
 ## MinkLoc3Dv2 is an improved version of our earlier point cloud descriptor MinkLoc3D. MinkLoc3Dv2 outperforms SOTA on standard benchmarks (as per February 2022).  
 
-Paper: [Improving Point Cloud Based Place Recognition with Ranking-based Loss and Large Batch Training](https://arxiv.org/pdf/2203.00972v1.pdf) 
-
+Paper: [Improving Point Cloud Based Place Recognition with Ranking-based Loss and Large Batch Training](https://ieeexplore.ieee.org/document/9956458)
 26th International Conference on Pattern Recognition (ICPR 2022)
+[arXiv](https://arxiv.org/pdf/2203.00972v1.pdf) 
 
 [Jacek Komorowski](mailto:jacek.komorowski@pw.edu.pl)
 Warsaw University of Technology
@@ -30,13 +30,15 @@ Experimental evaluation on the popular benchmarks proves the effectiveness of ou
 ### Citation
 If you find this work useful, please consider citing:
 
-    @misc{komorowski2022improving,
-          title={Improving Point Cloud Based Place Recognition with Ranking-based Loss and Large Batch Training}, 
-          author={Jacek Komorowski},
-          year={2022},
-          eprint={2203.00972},
-          archivePrefix={arXiv},
-          primaryClass={cs.CV}
+    @INPROCEEDINGS{9956458,  
+                  author={Komorowski, Jacek},  
+                  booktitle={2022 26th International Conference on Pattern Recognition (ICPR)},
+                  title={Improving Point Cloud Based Place Recognition with Ranking-based Loss and Large Batch Training},   
+                  year={2022},  
+                  volume={},  
+                  number={},  
+                  pages={3699-3705},  
+                  doi={10.1109/ICPR56361.2022.9956458}
     }
 
 ### Environment and Dependencies

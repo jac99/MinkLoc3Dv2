@@ -1,5 +1,5 @@
 [DEFAULT]
-dataset_folder = /data3/pointnetvlad/benchmark_datasets
+dataset_folder = /home/datutuda/PycharmProjects/SLAM/dataset/benchmark_datasets
 
 [TRAIN]
 num_workers = 8

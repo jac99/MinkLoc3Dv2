@@ -1,0 +1,2 @@
+minkloc3dv2.txt, config_baseline.txt, minkloc3dv2_baseline, 91.15, 86.26, 91.15, 86.26
+minkloc3dv2.txt, config_refined.txt, minkloc3dv2_refined, 99.07, 97.58, 99.07, 97.58

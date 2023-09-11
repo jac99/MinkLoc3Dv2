@@ -1,11 +1,11 @@
 [DEFAULT]
-dataset_folder = /data3/pointnetvlad/benchmark_datasets
+dataset_folder = /home/datutuda/PycharmProjects/SLAM/dataset/benchmark_datasets
 
 [TRAIN]
 num_workers = 8
-batch_size = 2048
-batch_split_size = 128
-val_batch_size = 256
+batch_size = 512
+batch_split_size = 32
+val_batch_size = 64
 
 lr = 1e-3
 epochs = 400
@@ -16,5 +16,5 @@ loss = TruncatedSmoothAP
 tau1 = 0.01
 positives_per_query = 4
 
-train_file = training_queries_baseline2.pickle
+train_file = training_queries_refine2.pickle
 val_file = test_queries_baseline2.pickle

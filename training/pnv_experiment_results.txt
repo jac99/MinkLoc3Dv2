@@ -1,0 +1,1 @@
+minkloc3dv2.txt, config_baseline.txt, model_MinkLoc_20230910_1539_final, 88.50, 82.75, 88.50, 82.75

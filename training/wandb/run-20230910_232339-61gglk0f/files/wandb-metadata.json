@@ -1,0 +1,145 @@
+{
+    "os": "Linux-5.11.0-27-generic-x86_64-with-glibc2.17",
+    "python": "3.8.17",
+    "heartbeatAt": "2023-09-10T15:23:41.573141",
+    "startedAt": "2023-09-10T15:23:39.856446",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "training/train.py",
+    "git": {
+        "remote": "https://github.com/jac99/MinkLoc3Dv2.git",
+        "commit": "349747301652accf2906cef335602d20af783b4f"
+    },
+    "email": null,
+    "root": "/home/datutuda/PycharmProjects/SLAM/MinkLoc3Dv2",
+    "host": "datutuda",
+    "username": "datutuda",
+    "executable": "/home/datutuda/anaconda3/envs/SLAM/bin/python",
+    "cpu_count": 12,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 3246.8286999999996,
+        "min": 800.0,
+        "max": 5880.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 1209.473,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 1026.395,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 6400.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3600.0,
+            "min": 800.0,
+            "max": 3800.0
+        }
+    ],
+    "disk": {
+        "total": 915.6172256469727,
+        "used": 523.4765739440918
+    },
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        }
+    ],
+    "memory": {
+        "total": 62.576568603515625
+    }
+}

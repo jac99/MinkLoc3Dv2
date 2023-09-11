@@ -29,36 +29,46 @@ from MinkowskiEngine.modules.resnet_block import BasicBlock, Bottleneck
 
 
 class ResNetBase(nn.Module):
-    block = None
-    layers = ()
-    init_dim = 64
-    planes = (64, 128, 256, 512)
+    BLOCK = None
+    LAYERS = ()
+    INIT_DIM = 64
+    PLANES = (64, 128, 256, 512)
 
     def __init__(self, in_channels, out_channels, D=3):
         nn.Module.__init__(self)
         self.D = D
-        assert self.block is not None
+        assert self.BLOCK is not None
 
         self.network_initialization(in_channels, out_channels, D)
         self.weight_initialization()
 
     def network_initialization(self, in_channels, out_channels, D):
         self.inplanes = self.init_dim
-        self.conv1 = ME.MinkowskiConvolution(in_channels, self.inplanes, kernel_size=5, stride=2, dimension=D)
 
-        self.bn1 = ME.MinkowskiBatchNorm(self.inplanes)
-        self.relu = ME.MinkowskiReLU(inplace=True)
-
-        self.pool = ME.MinkowskiAvgPooling(kernel_size=2, stride=2, dimension=D)
+        self.conv1 = nn.Sequential(
+            ME.MinkowskiConvolution(
+                in_channels, self.inplanes, kernel_size=3, stride=2, dimension=D
+            ),
+            ME.MinkowskiInstanceNorm(self.inplanes),
+            ME.MinkowskiReLU(inplace=True),
+            ME.MinkowskiMaxPooling(kernel_size=2, stride=2, dimension=D),
+        )
 
         self.layer1 = self._make_layer(self.block, self.planes[0], self.layers[0], stride=2)
         self.layer2 = self._make_layer(self.block, self.planes[1], self.layers[1], stride=2)
         self.layer3 = self._make_layer(self.block, self.planes[2], self.layers[2], stride=2)
         self.layer4 = self._make_layer(self.block, self.planes[3], self.layers[3], stride=2)
 
-        self.conv5 = ME.MinkowskiConvolution(self.inplanes, self.inplanes, kernel_size=3, stride=3, dimension=D)
-        self.bn5 = ME.MinkowskiBatchNorm(self.inplanes)
-        self.glob_avg = ME.MinkowskiGlobalMaxPooling()
+        self.conv5 = nn.Sequential(
+            ME.MinkowskiDropout(),
+            ME.MinkowskiConvolution(
+                self.inplanes, self.inplanes, kernel_size=3, stride=3, dimension=D
+            ),
+            ME.MinkowskiInstanceNorm(self.inplanes),
+            ME.MinkowskiGELU(),
+        )
+
+        self.glob_pool = ME.MinkowskiGlobalMaxPooling()
         self.final = ME.MinkowskiLinear(self.inplanes, out_channels, bias=True)
 
     def weight_initialization(self):
@@ -87,20 +97,12 @@ class ResNetBase(nn.Module):
 
     def forward(self, x):
         x = self.conv1(x)
-        x = self.bn1(x)
-        x = self.relu(x)
-        x = self.pool(x)
-
         x = self.layer1(x)
         x = self.layer2(x)
         x = self.layer3(x)
         x = self.layer4(x)
-
         x = self.conv5(x)
-        x = self.bn5(x)
-        x = self.relu(x)
-
-        x = self.glob_avg(x)
+        x = self.glob_pool(x)
         return self.final(x)
 
 

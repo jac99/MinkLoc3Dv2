@@ -9,16 +9,21 @@ from misc.utils import TrainingParams
 
 
 if __name__ == '__main__':
+    # 直接指定参数值
+    config_path = '../config/config_baseline.txt'
+    model_config_path = '../models/minkloc3dv2.txt'
+    debug_mode = False
+
     parser = argparse.ArgumentParser(description='Train MinkLoc3Dv2 model')
-    parser.add_argument('--config', type=str, required=True, help='Path to configuration file')
-    parser.add_argument('--model_config', type=str, required=True, help='Path to the model-specific configuration file')
-    parser.add_argument('--debug', dest='debug', action='store_true')
-    parser.set_defaults(debug=False)
+    parser.add_argument('--config', type=str, default=config_path, help='Path to configuration file')
+    parser.add_argument('--model_config', type=str, default=model_config_path,
+                        help='Path to the model-specific configuration file')
+    parser.add_argument('--debug', dest='debug', action='store_true', default=debug_mode, help='Enable debug mode')
 
     args = parser.parse_args()
-    print('Training config path: {}'.format(args.config))
-    print('Model config path: {}'.format(args.model_config))
-    print('Debug mode: {}'.format(args.debug))
+    print('训练参数路径: {}'.format(args.config))
+    print('模型参数路径: {}'.format(args.model_config))
+    print('Debug模式是否开启: {}'.format(args.debug))
 
     params = TrainingParams(args.config, args.model_config, debug=args.debug)
     params.print()

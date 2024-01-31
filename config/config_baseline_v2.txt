@@ -1,3 +1,4 @@
+# MinkLoc3Dv2 training config using Baseline dataset
 [DEFAULT]
 dataset_folder = /data3/pointnetvlad/benchmark_datasets
 
@@ -8,13 +9,13 @@ batch_split_size = 128
 val_batch_size = 256
 
 lr = 1e-3
-epochs = 500
-scheduler_milestones = 350, 450
+epochs = 400
+scheduler_milestones = 250, 350
 aug_mode = 1
 weight_decay = 1e-4
 loss = TruncatedSmoothAP
 tau1 = 0.01
 positives_per_query = 4
 
-train_file = training_queries_refine2.pickle
+train_file = training_queries_baseline2.pickle
 val_file = test_queries_baseline2.pickle

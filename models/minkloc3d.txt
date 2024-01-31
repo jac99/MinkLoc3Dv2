@@ -1,12 +1,12 @@
-# MinkLoc3Dv2 model definition
+# MinkLoc3D model definition
 [MODEL]
 model=MinkLoc
-planes=64,128,64,32
-layers=1,1,1,1
-num_top_down=2
+planes = 32,64,64
+layers = 1,1,1
+num_top_down=1
 conv0_kernel_size=5
 feature_size=256
-block=ECABasicBlock
+block=BasicBlock
 pooling=GeM
 
 coordinates=cartesian

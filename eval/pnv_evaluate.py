@@ -21,11 +21,11 @@ from datasets.pointnetvlad.pnv_raw import PNVPointCloudLoader
 def evaluate(model, device, params: TrainingParams, log: bool = False, show_progress: bool = False):
     # Run evaluation on all eval datasets
 
-    eval_database_files = ['oxford_evaluation_database_v2.pickle', 'university_evaluation_database_v2.pickle',
-                           'residential_evaluation_database_v2.pickle', 'business_evaluation_database_v2.pickle']
+    eval_database_files = ['oxford_evaluation_database.pickle', 'university_evaluation_database.pickle',
+                           'residential_evaluation_database.pickle', 'business_evaluation_database.pickle']
 
-    eval_query_files = ['oxford_evaluation_query_v2.pickle', 'university_evaluation_query_v2.pickle',
-                        'residential_evaluation_query_v2.pickle', 'business_evaluation_query_v2.pickle']
+    eval_query_files = ['oxford_evaluation_query.pickle', 'university_evaluation_query.pickle',
+                        'residential_evaluation_query.pickle', 'business_evaluation_query.pickle']
 
     assert len(eval_database_files) == len(eval_query_files)
 

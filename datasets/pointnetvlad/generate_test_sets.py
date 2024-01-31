@@ -102,8 +102,8 @@ def construct_query_and_database_sets(base_path, runs_folder, folders, pointclou
                 # indices of the positive matches in database i of each query (key) in test set j
                 test_sets[j][key][i] = index[0].tolist()
 
-    output_to_file(database_sets, base_path, output_name + '_evaluation_database_v2.pickle')
-    output_to_file(test_sets, base_path, output_name + '_evaluation_query_v2.pickle')
+    output_to_file(database_sets, base_path, output_name + '_evaluation_database.pickle')
+    output_to_file(test_sets, base_path, output_name + '_evaluation_query.pickle')
 
 
 if __name__ == '__main__':

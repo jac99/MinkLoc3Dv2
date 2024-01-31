@@ -18,5 +18,5 @@ loss = TruncatedSmoothAP
 tau1 = 0.01
 positives_per_query = 4
 
-train_file = training_queries_refine2.pickle
-val_file = test_queries_baseline2.pickle
+train_file = training_queries_refine_v2.pickle
+val_file = test_queries_baseline_v2.pickle

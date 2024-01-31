@@ -92,7 +92,7 @@ are saved there.
 ### Training
 
 To train **MinkLoc3Dv2** model, download and decompress the dataset and generate training pickles as described above.
-Edit the configuration file (`config_baseline.txt` or `config_refined.txt`). 
+Edit the configuration file (`config_baseline_v2.txt` or `config_refined_v2.txt`). 
 Set `dataset_folder` parameter to the dataset root folder.
 If running out of GPU memory, decrease `batch_split_size` parameter value. 
 
@@ -102,10 +102,10 @@ To train the network, run:
 cd training
 
 # To train minkloc3d model on the Baseline Dataset
-python train.py --config ../config/config_baseline.txt --model_config ../models/minkloc3dv2.txt
+python train.py --config ../config/config_baseline_v2.txt --model_config ../models/minkloc3dv2.txt
 
 # To train minkloc3d model on the Refined Dataset
-python train.py --config ../config/config_refined.txt --model_config ../models/minkloc3dv2.txt
+python train.py --config ../config/config_refined_v2.txt --model_config ../models/minkloc3dv2.txt
 ```
 
 ### Pre-trained Models
@@ -122,10 +122,10 @@ To evaluate pretrained models run the following commands:
 cd eval
 
 # To evaluate the model trained on the Baseline Dataset
-python evaluate.py --config ../config/config_baseline.txt --model_config ../models/minkloc3dv2.txt --weights ../weights/minkloc3dv2_baseline.pth
+python evaluate.py --config ../config/config_baseline_v2.txt --model_config ../models/minkloc3dv2.txt --weights ../weights/minkloc3dv2_baseline.pth
 
 # To evaluate the model trained on the Refined Dataset
-python evaluate.py --config ../config/config_refined.txt --model_config ../models/minkloc3dv2.txt --weights ../weights/minkloc3dv2_refined.pth
+python evaluate.py --config ../config/config_refined_v2.txt --model_config ../models/minkloc3dv2.txt --weights ../weights/minkloc3dv2_refined.pth
 ```
 
 ## Results

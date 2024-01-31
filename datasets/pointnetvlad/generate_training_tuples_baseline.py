@@ -93,5 +93,5 @@ if __name__ == '__main__':
     print("Number of training submaps: " + str(len(df_train['file'])))
     print("Number of non-disjoint test submaps: " + str(len(df_test['file'])))
     # ind_nn_r is a threshold for positive elements - 10 is in original PointNetVLAD code for refined dataset
-    construct_query_dict(df_train, base_path, "training_queries_baseline2.pickle", ind_nn_r=10)
-    construct_query_dict(df_test, base_path, "test_queries_baseline2.pickle", ind_nn_r=10)
+    construct_query_dict(df_train, base_path, "training_queries_baseline_v2.pickle", ind_nn_r=10)
+    construct_query_dict(df_test, base_path, "test_queries_baseline_v2.pickle", ind_nn_r=10)

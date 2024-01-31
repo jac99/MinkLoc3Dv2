@@ -77,4 +77,4 @@ if __name__ == '__main__':
 
     print("Number of training submaps: " + str(len(df_train['file'])))
     # ind_nn_r is a threshold for positive elements - 12.5 is in original PointNetVLAD code for refined dataset
-    construct_query_dict(df_train, base_path, "training_queries_refine2.pickle", ind_nn_r=12.5)
+    construct_query_dict(df_train, base_path, "training_queries_refine_v2.pickle", ind_nn_r=12.5)
